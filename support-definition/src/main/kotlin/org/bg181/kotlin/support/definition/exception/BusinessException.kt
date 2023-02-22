@@ -6,12 +6,24 @@ package org.bg181.kotlin.support.definition.exception
  * @author lxc
  * @date 2023/02/19
  */
-class BusinessException : BaseException {
+class BusinessException : RuntimeException {
 
-    constructor(errorCode: IErrorCode) : super(errorCode)
+    var code: Int = 0
+    override var message: String = ""
 
-    constructor(errorCode: IErrorCode, msg: String) : super(errorCode, msg)
+    constructor(errorCode: IErrorCode) : super(errorCode.defaultMsg) {
+        this.code = errorCode.code
+        this.message = errorCode.defaultMsg
+    }
 
-    constructor(code: Int, msg: String) : super(code, msg)
+    constructor(errorCode: IErrorCode, message: String) : super(message) {
+        this.code = errorCode.code
+        this.message = message
+    }
+
+    constructor(code: Int, message: String) : super(message) {
+        this.code = code
+        this.message = message
+    }
 
 }

@@ -49,7 +49,7 @@
 
     <dependencyManagement>
         <dependencies>
-            <!-- kotlin support -->
+            <!-- kotlin web support -->
             <dependency>
                 <groupId>org.bg181.kotlin</groupId>
                 <artifactId>support-definition</artifactId>

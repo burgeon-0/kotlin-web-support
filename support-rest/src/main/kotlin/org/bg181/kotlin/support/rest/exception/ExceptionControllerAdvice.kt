@@ -2,7 +2,7 @@ package org.bg181.kotlin.support.rest.exception
 
 import jakarta.servlet.http.HttpServletRequest
 import org.bg181.kotlin.support.definition.exception.BaseErrorCode
-import org.bg181.kotlin.support.definition.exception.BaseException
+import org.bg181.kotlin.support.definition.exception.ParamException
 import org.bg181.kotlin.support.definition.exception.BusinessException
 import org.bg181.kotlin.support.definition.exception.ServerException
 import org.bg181.kotlin.support.definition.model.Resp
@@ -197,6 +197,28 @@ class ExceptionControllerAdvice {
         return resp
     }
 
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(BusinessException::class)
+    fun handleBusinessException(
+        request: HttpServletRequest,
+        ex: BusinessException
+    ): Resp<Unit> {
+        val resp = Resp<Unit>(ex.code, ex.message)
+        logBusinessError(request, resp, ex)
+        return resp
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(ParamException::class)
+    fun handleParamException(
+        request: HttpServletRequest,
+        ex: ParamException
+    ): Resp<Unit> {
+        val resp = Resp<Unit>(ex.code, ex.message)
+        logClientError(request, resp, ex)
+        return resp
+    }
+
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(ServerException::class)
     fun handleServerException(
@@ -205,28 +227,6 @@ class ExceptionControllerAdvice {
     ): Resp<Unit> {
         val resp = Resp<Unit>(ex.code, ex.message)
         logServerError(request, resp, ex)
-        return resp
-    }
-
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(BusinessException::class)
-    fun handleBusinessException(
-        request: HttpServletRequest,
-        ex: BaseException
-    ): Resp<Unit> {
-        val resp = Resp<Unit>(ex.code, ex.message)
-        logBusinessError(request, resp, ex)
-        return resp
-    }
-
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(BaseException::class)
-    fun handleBaseException(
-        request: HttpServletRequest,
-        ex: BaseException
-    ): Resp<Unit> {
-        val resp = Resp<Unit>(ex.code, ex.message)
-        logClientError(request, resp, ex)
         return resp
     }
 
@@ -244,33 +244,33 @@ class ExceptionControllerAdvice {
         return resp
     }
 
-    private fun logClientError(request: HttpServletRequest, resp: Resp<Unit>, ex: Throwable) {
+    private fun logBusinessError(request: HttpServletRequest, resp: Resp<Unit>, ex: Throwable) {
         when (logDetails) {
             true -> logger.warn(
-                "An client error occurred => uri: $request.requestURI, response: ${resp.toJsonString()}",
+                "A business error occurred => uri: $request.requestURI, response: ${resp.toJsonString()}",
                 ex
             )
             else -> logger.warn(
-                "An client error occurred => uri: $request.requestURI, response: ${resp.toJsonString()}"
+                "A business error occurred => uri: $request.requestURI, response: ${resp.toJsonString()}"
             )
         }
     }
 
-    private fun logBusinessError(request: HttpServletRequest, resp: Resp<Unit>, ex: Throwable) {
+    private fun logClientError(request: HttpServletRequest, resp: Resp<Unit>, ex: Throwable) {
         when (logDetails) {
             true -> logger.warn(
-                "An business error occurred => uri: $request.requestURI, response: ${resp.toJsonString()}",
+                "A client error occurred => uri: $request.requestURI, response: ${resp.toJsonString()}",
                 ex
             )
             else -> logger.warn(
-                "An business error occurred => uri: $request.requestURI, response: ${resp.toJsonString()}"
+                "A client error occurred => uri: $request.requestURI, response: ${resp.toJsonString()}"
             )
         }
     }
 
     private fun logServerError(request: HttpServletRequest, resp: Resp<Unit>, ex: Throwable) {
         logger.error(
-            "An server error occurred => uri: $request.requestURI, response: ${resp.toJsonString()}", ex
+            "A server error occurred => uri: $request.requestURI, response: ${resp.toJsonString()}", ex
         )
     }
 
