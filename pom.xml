@@ -19,6 +19,7 @@
 
     <modules>
         <module>support-definition</module>
+        <module>support-mybatis-plus</module>
         <module>support-rest</module>
     </modules>
 
@@ -28,10 +29,17 @@
         <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
         <!-- maven -->
         <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
+        <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
         <!-- kotlin web support -->
         <support-definition.version>1.0.0</support-definition.version>
+        <support-mybatis-plus.version>1.0.0</support-mybatis-plus.version>
+        <support-rest.version>1.0.0</support-rest.version>
         <!-- dependencies -->
         <validation-api.version>2.0.1.Final</validation-api.version>
+        <mapstruct.version>1.5.3.Final</mapstruct.version>
+        <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
+        <mysql-connector-java.version>8.0.22</mysql-connector-java.version>
+        <freemarker.version>2.3.32</freemarker.version>
     </properties>
 
     <repositories>
@@ -55,6 +63,16 @@
                 <artifactId>support-definition</artifactId>
                 <version>${support-definition.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.bg181.kotlin</groupId>
+                <artifactId>support-mybatis-plus</artifactId>
+                <version>${support-mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.bg181.kotlin</groupId>
+                <artifactId>support-rest</artifactId>
+                <version>${support-rest.version}</version>
+            </dependency>
 
             <!-- kotlin -->
             <dependency>
@@ -68,6 +86,35 @@
                 <groupId>javax.validation</groupId>
                 <artifactId>validation-api</artifactId>
                 <version>${validation-api.version}</version>
+            </dependency>
+
+            <!-- mapstruct -->
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+
+            <!-- mybatis plus -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-connector-java.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-generator</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.freemarker</groupId>
+                <artifactId>freemarker</artifactId>
+                <version>${freemarker.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -115,7 +162,53 @@
                             </sourceDirs>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>kapt</id>
+                        <goals>
+                            <goal>kapt</goal>
+                        </goals>
+                        <configuration>
+                            <sourceDirs>
+                                <sourceDir>src/main/kotlin</sourceDir>
+                                <sourceDir>src/main/java</sourceDir>
+                            </sourceDirs>
+                            <annotationProcessorPaths>
+                                <annotationProcessorPath>
+                                    <groupId>org.mapstruct</groupId>
+                                    <artifactId>mapstruct-processor</artifactId>
+                                    <version>${mapstruct.version}</version>
+                                </annotationProcessorPath>
+                            </annotationProcessorPaths>
+                        </configuration>
+                    </execution>
                 </executions>
+                <configuration>
+                    <args>
+                        <arg>-Xjsr305=strict</arg>
+                    </args>
+                    <jvmTarget>${java.version}</jvmTarget>
+                    <compilerPlugins>
+                        <plugin>all-open</plugin>
+                    </compilerPlugins>
+                    <pluginOptions>
+                        <option>all-open:annotation=org.springframework.context.annotation.Configuration</option>
+                        <option>all-open:annotation=org.springframework.web.bind.annotation.RestController</option>
+                        <option>all-open:annotation=org.springframework.stereotype.Controller</option>
+                        <option>all-open:annotation=org.springframework.stereotype.Service</option>
+                        <option>all-open:annotation=org.springframework.stereotype.Repository</option>
+                        <option>all-open:annotation=org.springframework.stereotype.Component</option>
+                        <option>all-open:annotation=com.alibaba.dubbo.config.annotation.Reference</option>
+                        <option>all-open:annotation=com.alibaba.dubbo.config.annotation.Service</option>
+                        <option>all-open:annotation=org.springframework.transaction.annotation.Transactional</option>
+                    </pluginOptions>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.jetbrains.kotlin</groupId>
+                        <artifactId>kotlin-maven-allopen</artifactId>
+                        <version>${kotlin.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
 
             <!-- maven-compiler-plugin -->
@@ -144,6 +237,21 @@
                         <phase>test-compile</phase>
                         <goals>
                             <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>${maven-source-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
                         </goals>
                     </execution>
                 </executions>

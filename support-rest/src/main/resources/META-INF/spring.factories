@@ -1,0 +1,4 @@
+# Auto Configure
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  org.bg181.kotlin.support.rest.config.WebMvcConfig,\
+  org.bg181.kotlin.support.rest.exception.ExceptionControllerAdvice

@@ -13,12 +13,12 @@ data class Resp<T>(
     /**
      * 返回编码
      */
-    var code: Int? = null,
+    var code: Int? = 200,
 
     /**
      * 返回消息
      */
-    var message: String? = null,
+    var message: String? = "ok",
 
     /**
      * 返回数据

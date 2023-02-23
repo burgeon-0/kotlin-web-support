@@ -6,7 +6,7 @@ package org.bg181.kotlin.support.definition.exception
  * @author lxc
  * @date 2023/02/19
  */
-open class ParamException : RuntimeException {
+class ParamException : RuntimeException {
 
     var code: Int = 0
     override var message: String = ""
