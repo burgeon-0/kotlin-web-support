@@ -247,11 +247,11 @@ class ExceptionControllerAdvice {
     private fun logBusinessError(request: HttpServletRequest, resp: Resp<Unit>, ex: Throwable) {
         when (logDetails) {
             true -> logger.warn(
-                "A business error occurred => uri: $request.requestURI, response: ${resp.toJsonString()}",
+                "A business error occurred => uri: ${request.requestURI}, response: ${resp.toJsonString()}",
                 ex
             )
             else -> logger.warn(
-                "A business error occurred => uri: $request.requestURI, response: ${resp.toJsonString()}"
+                "A business error occurred => uri: ${request.requestURI}, response: ${resp.toJsonString()}"
             )
         }
     }
@@ -259,18 +259,18 @@ class ExceptionControllerAdvice {
     private fun logClientError(request: HttpServletRequest, resp: Resp<Unit>, ex: Throwable) {
         when (logDetails) {
             true -> logger.warn(
-                "A client error occurred => uri: $request.requestURI, response: ${resp.toJsonString()}",
+                "A client error occurred => uri: ${request.requestURI}, response: ${resp.toJsonString()}",
                 ex
             )
             else -> logger.warn(
-                "A client error occurred => uri: $request.requestURI, response: ${resp.toJsonString()}"
+                "A client error occurred => uri: ${request.requestURI}, response: ${resp.toJsonString()}"
             )
         }
     }
 
     private fun logServerError(request: HttpServletRequest, resp: Resp<Unit>, ex: Throwable) {
         logger.error(
-            "A server error occurred => uri: $request.requestURI, response: ${resp.toJsonString()}", ex
+            "A server error occurred => uri: ${request.requestURI}, response: ${resp.toJsonString()}", ex
         )
     }
 

@@ -18,6 +18,42 @@
     <name>support-mybatis-plus</name>
     <description>Support MyBatis Plus</description>
 
+    <properties>
+        <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
+        <mysql-connector-java.version>8.0.22</mysql-connector-java.version>
+        <freemarker.version>2.3.32</freemarker.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- mybatis plus -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-generator</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+
+            <!-- mysql connector -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-connector-java.version}</version>
+            </dependency>
+
+            <!-- freemarker -->
+            <dependency>
+                <groupId>org.freemarker</groupId>
+                <artifactId>freemarker</artifactId>
+                <version>${freemarker.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
         <!-- mybatis plus -->
         <dependency>

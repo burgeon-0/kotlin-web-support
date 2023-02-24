@@ -35,11 +35,7 @@
         <support-mybatis-plus.version>1.0.0</support-mybatis-plus.version>
         <support-rest.version>1.0.0</support-rest.version>
         <!-- dependencies -->
-        <validation-api.version>2.0.1.Final</validation-api.version>
         <mapstruct.version>1.5.3.Final</mapstruct.version>
-        <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
-        <mysql-connector-java.version>8.0.22</mysql-connector-java.version>
-        <freemarker.version>2.3.32</freemarker.version>
     </properties>
 
     <repositories>
@@ -81,40 +77,11 @@
                 <version>${kotlin.version}</version>
             </dependency>
 
-            <!-- validation -->
-            <dependency>
-                <groupId>javax.validation</groupId>
-                <artifactId>validation-api</artifactId>
-                <version>${validation-api.version}</version>
-            </dependency>
-
             <!-- mapstruct -->
             <dependency>
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct</artifactId>
                 <version>${mapstruct.version}</version>
-            </dependency>
-
-            <!-- mybatis plus -->
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-boot-starter</artifactId>
-                <version>${mybatis-plus.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>mysql</groupId>
-                <artifactId>mysql-connector-java</artifactId>
-                <version>${mysql-connector-java.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-generator</artifactId>
-                <version>${mybatis-plus.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.freemarker</groupId>
-                <artifactId>freemarker</artifactId>
-                <version>${freemarker.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
