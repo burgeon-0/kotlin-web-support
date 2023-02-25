@@ -11,22 +11,33 @@
     </parent>
 
     <groupId>org.bg181.kotlin</groupId>
-    <artifactId>support-mybatis-plus</artifactId>
+    <artifactId>support-common</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>support-mybatis-plus</name>
-    <description>Support MyBatis Plus</description>
+    <name>support-common</name>
+    <description>Support Common</description>
+
+    <properties>
+        <hutool.version>5.8.12</hutool.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- hutool -->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-core</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
-        <!-- mybatis plus -->
+        <!-- hutool -->
         <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-core</artifactId>
         </dependency>
     </dependencies>
 
