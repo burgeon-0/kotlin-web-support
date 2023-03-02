@@ -22,6 +22,7 @@
         <module>support-definition</module>
         <module>support-mybatis-plus</module>
         <module>support-rest</module>
+        <module>support-ui</module>
     </modules>
 
     <properties>
@@ -36,6 +37,7 @@
         <support-definition.version>1.0.0</support-definition.version>
         <support-mybatis-plus.version>1.0.0</support-mybatis-plus.version>
         <support-rest.version>1.0.0</support-rest.version>
+        <support-ui.version>1.0.0</support-ui.version>
         <!-- dependencies -->
         <mapstruct.version>1.5.3.Final</mapstruct.version>
         <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
@@ -78,6 +80,11 @@
                 <groupId>org.bg181.kotlin</groupId>
                 <artifactId>support-rest</artifactId>
                 <version>${support-rest.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.bg181.kotlin</groupId>
+                <artifactId>support-ui</artifactId>
+                <version>${support-ui.version}</version>
             </dependency>
 
             <!-- kotlin -->

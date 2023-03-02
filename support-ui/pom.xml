@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.bg181.kotlin</groupId>
+        <artifactId>kotlin-web-support</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <groupId>org.bg181.kotlin</groupId>
+    <artifactId>support-ui</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <name>support-ui</name>
+    <description>Support UI</description>
+
+    <properties>
+        <vaadin.version>23.3.6</vaadin.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- vaadin -->
+            <dependency>
+                <groupId>com.vaadin</groupId>
+                <artifactId>vaadin-spring-boot-starter</artifactId>
+                <version>${vaadin.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <!-- vaadin -->
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-spring-boot-starter</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>
