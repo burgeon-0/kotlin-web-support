@@ -1,6 +1,5 @@
 package org.bg181.kotlin.support.rest.exception
 
-import jakarta.servlet.http.HttpServletRequest
 import org.bg181.kotlin.support.definition.exception.BaseErrorCode
 import org.bg181.kotlin.support.definition.exception.ParamException
 import org.bg181.kotlin.support.definition.exception.BusinessException
@@ -26,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestControllerAdvice
 import org.springframework.web.multipart.support.MissingServletRequestPartException
 import org.springframework.web.servlet.NoHandlerFoundException
+import javax.servlet.http.HttpServletRequest
 
 /**
  * 统一异常处理

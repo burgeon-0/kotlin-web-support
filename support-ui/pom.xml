@@ -18,21 +18,6 @@
     <name>support-ui</name>
     <description>Support UI</description>
 
-    <properties>
-        <vaadin.version>23.3.6</vaadin.version>
-    </properties>
-
-    <dependencyManagement>
-        <dependencies>
-            <!-- vaadin -->
-            <dependency>
-                <groupId>com.vaadin</groupId>
-                <artifactId>vaadin-spring-boot-starter</artifactId>
-                <version>${vaadin.version}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
     <dependencies>
         <!-- vaadin -->
         <dependency>

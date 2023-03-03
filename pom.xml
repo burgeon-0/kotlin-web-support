@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.2</version>
+        <version>2.7.8</version>
     </parent>
 
     <groupId>org.bg181.kotlin</groupId>
@@ -29,8 +29,11 @@
         <!-- kotlin -->
         <kotlin.version>1.8.10</kotlin.version>
         <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
+        <java.version>17</java.version>
         <!-- maven -->
         <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
         <!-- kotlin web support -->
         <support-common.version>1.0.0</support-common.version>
@@ -43,6 +46,7 @@
         <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
         <mysql-connector-java.version>8.0.22</mysql-connector-java.version>
         <freemarker.version>2.3.32</freemarker.version>
+        <vaadin.version>23.3.6</vaadin.version>
     </properties>
 
     <repositories>
@@ -121,6 +125,15 @@
                 <groupId>org.freemarker</groupId>
                 <artifactId>freemarker</artifactId>
                 <version>${freemarker.version}</version>
+            </dependency>
+
+            <!-- vaadin -->
+            <dependency>
+                <groupId>com.vaadin</groupId>
+                <artifactId>vaadin-bom</artifactId>
+                <version>${vaadin.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -222,6 +235,11 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <proc>none</proc>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
                 <executions>
                     <execution>
                         <id>default-compile</id>
