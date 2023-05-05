@@ -17,6 +17,9 @@ class XxlJobConfig {
 
     private val logger = LoggerFactory.getLogger(XxlJobConfig::class.java)
 
+    @Value("\${xxl.job.enable:true}")
+    private val enable: Boolean = true
+
     @Value("\${xxl.job.admin.addresses}")
     private val adminAddresses: String? = null
 
@@ -40,6 +43,11 @@ class XxlJobConfig {
 
     @Bean
     fun xxlJobExecutor(): XxlJobSpringExecutor? {
+        if (!enable) {
+            logger.info(">>>>>>>>>>> xxl-job disabled.")
+            return null
+        }
+
         logger.info(">>>>>>>>>>> xxl-job config init.")
         logger.info(">>>>>>>>>>> adminAddresses: $adminAddresses")
         logger.info(">>>>>>>>>>> appname: $appname")
